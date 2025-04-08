@@ -7,6 +7,10 @@ This project utilizes:
 - https://mermaid.js.org
 - https://www.markdownguide.org
 
+Good example slides:
+
+- https://github.com/HoGentTIN/hogent-markdown-slides
+
 ## Project Structure
 
 ```
