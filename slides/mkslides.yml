@@ -1,6 +1,9 @@
 index:
-  title: CivicActions
+  title: Slides
+  favicon: ./assets/images/favicon.svg
+  theme: 
 slides:
+  favicon: ./assets/images/favicon.svg
   theme: ./assets/css/slides.css
   highlight_theme: vs
   separator: ^\s*---\s*$
