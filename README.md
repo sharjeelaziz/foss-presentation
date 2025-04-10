@@ -1,15 +1,20 @@
 # Presenting with FOSS
 
-This project utilizes:
+A Docker-based tool for creating, building, and serving presentations using free and open-source software.
 
-- https://revealjs.com
-- https://pypi.org/project/mkslides
-- https://mermaid.js.org
-- https://www.markdownguide.org
+## Powered by
 
-Good example slides:
+This project utilizes these amazing FOSS technologies:
 
-- https://github.com/HoGentTIN/hogent-markdown-slides
+| Technology | Description |
+|------------|-------------|
+| [Reveal.js](https://revealjs.com) | HTML presentation framework |
+| [mkslides](https://pypi.org/project/mkslides) | Tool for creating slides from Markdown |
+| [Mermaid](https://mermaid.js.org) | JavaScript based diagramming and charting tool |
+| [Markdown Guide](https://www.markdownguide.org) | Simple markup language |
+
+For inspiration, check out:
+- [HoGentTIN Markdown Slides](https://github.com/HoGentTIN/hogent-markdown-slides)
 
 ## Project Structure
 
@@ -28,51 +33,50 @@ mkslides-presentation
 └── README.md
 ```
 
-## Getting Started
+## Features
 
-To get started with this project, follow the instructions below:
+- Create presentation slides using Markdown
+- Build slides to HTML
+- Serve slides with live preview
+- Customize the slides directory
 
-### Prerequisites
+## Requirements
 
-- Ensure you have Docker installed on your machine.
-- Make sure you have `make` installed for using the provided makefile commands.
+- Docker
+- Make (for using the provided makefile commands)
 
-### Building the Docker Image
+## Usage
 
-To build the Docker image for the mkslides tool, run the following command in the project root directory:
+This project uses a Makefile to simplify Docker commands.
 
-```
+### Basic Commands
+
+```bash
+# Show help information
+make help
+
+# Build the Docker image
 make build
-```
 
-This will build the Docker image with the tag `mkslides-container`.
+# Serve slides (accessible at http://localhost:8000)
+make serve
 
-### Running the Presentation
+# Build slides without serving
+make build-slides
 
-To run the presentation server, use:
+# Start a bash shell inside the container
+make bash
 
-```
-make run
-```
-
-This will start the server on port 8000. You can view the presentation by opening `http://localhost:8000` in your web browser.
-
-### Building the Slides
-
-To generate the slides without running the server:
-
-```
-make slides
-```
-
-This will build the presentation slides from your Markdown files.
-
-### Cleaning Up
-
-To remove the Docker image:
-
-```
+# Remove the Docker image
 make clean
+```
+
+### Custom Slides Directory
+
+By default, the tool looks for slides in the `./slides` directory. You can specify a different directory using the `SLIDES_DIR` variable:
+
+```bash
+make serve SLIDES_DIR=./my-presentations
 ```
 
 ### Generating Slides
@@ -81,8 +85,7 @@ The slides are defined in the `slides` directory. You can edit `slide1.md`, `sli
 
 ### Configuration
 
-The `mkslides.yaml` file contains configuration settings for the presentation, including theme and layout options. Modify this file to change the appearance of your slides.
-
+The `mkslides.yml` file contains configuration settings for the presentation, including theme and layout options. Modify this file to change the appearance of your slides.
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
