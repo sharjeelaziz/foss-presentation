@@ -6,7 +6,7 @@ on:
   workflow_dispatch:    # Allows manual triggering from the GitHub UI
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write      # Needed for pushing to gh-pages branch
@@ -33,12 +33,21 @@ jobs:
         run: |
           mkdir -p site
           docker run --rm -v ${{ github.workspace }}/slides:/slides -v ${{ github.workspace }}/site:/slides/site foss-presentation build
+          ls ${{ github.workspace }}/slides/site/
       
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./slides/site
+          path: ${{ github.workspace }}/slides/site/
 
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
