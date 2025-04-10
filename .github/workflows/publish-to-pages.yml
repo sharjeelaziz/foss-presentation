@@ -9,10 +9,6 @@ jobs:
   # Build the slides
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write      # Needed for pushing to gh-pages branch
-      pages: write         # Needed for deployment to Pages
-      id-token: write      # Needed for deployment to Pages
 
     steps:
       - name: Checkout repository
@@ -34,15 +30,19 @@ jobs:
         run: |
           mkdir -p site
           docker run --rm -v ${{ github.workspace }}/slides:/slides -v ${{ github.workspace }}/site:/slides/site foss-presentation build
-          ls ${{ github.workspace }}/slides/site/
+          ls -la ${{ github.workspace }}/site/
       
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ github.workspace }}/slides/site/
+          path: ${{ github.workspace }}/site/
 
   # Deployment job
   deploy:
+    permissions:
+      contents: write      # Needed for pushing to gh-pages branch
+      pages: write         # Needed for deployment to Pages
+      id-token: write      # Needed for deployment to Pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
