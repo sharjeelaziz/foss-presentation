@@ -33,7 +33,7 @@ jobs:
           docker run --rm -v ${{ github.workspace }}/slides:/slides -v ${{ github.workspace }}/site:/slides/site foss-presentation build
       
       - name: Deploy to GitHub Pages
-      - uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
       - id: deployment
