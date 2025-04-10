@@ -32,7 +32,7 @@ jobs:
       - name: Build slides
         run: |
           mkdir -p site
-          docker run --rm -v ${{ github.workspace }}/slides:/slides -v ${{ github.workspace }}/site:/slides/site foss-presentation build
+          docker run --rm -v ./slides:/slides -v ./site:/slides/site foss-presentation build
       
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
