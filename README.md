@@ -85,8 +85,7 @@ The slides are defined in the `slides` directory. You can edit `slide1.md`, `sli
 
 ### Configuration
 
-The `mkslides.toml` file contains configuration settings for the presentation, including theme and layout options. Modify this file to change the appearance of your slides.
-
+The `mkslides.yml` file contains configuration settings for the presentation, including theme and layout options. Modify this file to change the appearance of your slides.
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
