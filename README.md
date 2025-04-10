@@ -47,9 +47,9 @@ mkslides-presentation
 
 ## Usage
 
-This project uses a Makefile to simplify Docker commands.
+This project can be used either with Make commands or direct Docker commands.
 
-### Basic Commands
+### Using Make Commands
 
 ```bash
 # Show help information
@@ -71,12 +71,39 @@ make bash
 make clean
 ```
 
-### Custom Slides Directory
+### Using Docker Commands Directly
 
-By default, the tool looks for slides in the `./slides` directory. You can specify a different directory using the `SLIDES_DIR` variable:
+If you prefer to use Docker commands directly or don't have Make available:
 
 ```bash
+# Build the Docker image
+docker buildx build --load --tag foss-presentation .
+
+# Serve slides (accessible at http://localhost:8000)
+docker run -it --rm -v "$(pwd)/slides:/slides" -p 8000:8000 foss-presentation serve
+
+# Build slides without serving
+docker run -it --rm -v "$(pwd)/slides:/slides" foss-presentation build
+
+# Start a bash shell inside the container
+docker run -it --rm -v "$(pwd)/slides:/slides" foss-presentation bash
+
+# Remove the Docker image
+docker rmi foss-presentation
+```
+
+### Custom Slides Directory
+
+By default, the tool looks for slides in the `./slides` directory. You can specify a different directory:
+
+Using Make:
+```bash
 make serve SLIDES_DIR=./my-presentations
+```
+
+Using Docker directly:
+```bash
+docker run -it --rm -v "$(pwd)/my-presentations:/slides" -p 8000:8000 foss-presentation serve
 ```
 
 ### Generating Slides
