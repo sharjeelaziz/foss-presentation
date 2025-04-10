@@ -32,12 +32,12 @@ jobs:
       - name: Build slides
         run: |
           mkdir -p site
-          docker run --rm -v ${{ github.workspace }}/slides:/slides -v ${{ github.workspace }}/site:/slides/_site foss-presentation build
+          docker run --rm -v ${{ github.workspace }}/slides:/slides -v ${{ github.workspace }}/site:/slides/site foss-presentation build
       
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site
+          path: ./slides/site
 
       - name: Deploy to GitHub Pages
         id: deployment
