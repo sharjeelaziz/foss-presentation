@@ -2,6 +2,8 @@
 
 A Docker-based tool for creating, building, and serving presentations using free and open-source software.
 
+[Demo Slides](https://sharjeelaziz.github.io/foss-presentation/)
+
 ## Powered by
 
 This project utilizes these amazing FOSS technologies:
